@@ -159,7 +159,9 @@
   <audio id="bgm" src="musica_opt.mp3" loop preload="auto"></audio>
 
   <!-- ══════════ ESCENA A-FRAME ══════════ -->
-  <a-scene vr-mode-ui="enabled: true">
+  <a-scene vr-mode-ui="enabled: true"
+    renderer="antialias: false; colorManagement: true"
+    gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/versioned/decoders/1.5.7/">
 
     <!-- PRIMITIVAS -->
     <a-plane
@@ -191,50 +193,50 @@
 
     <!-- EDIFICIOS -->
     <a-gltf-model id="templo"
-      src="https://cdn.tinyglb.com/models/4a2392a6fa04477493b9015416cf0571.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/templo_opt.glb"
       alt="templo" position="0 0 -40" scale="0.01 0.01 0.01" rotation="0 0 0">
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/26df246b648249448a9a85552e3e07bd.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/tori_opt.glb"
       alt="puerta tori" position="0 0 -15" scale="14 14 14">
       <a-light type="directional" position="5 10 5" intensity="1" color="#ffffff"></a-light>
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/c728a8c818a148aeab0f867e2e917b66.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/tienda_opt.glb"
       alt="tienda" position="-30 0 5" scale="1 1 1" rotation="0 90 0">
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/5fb5871d0e6b46868efd2a1f92bc8704.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/casita_opt.glb"
       alt="casita" position="-30 0 -20" scale="1.5 1.5 1.5" rotation="0 55 0">
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/783d20c383b14c77a3c02175dfe4d5ea.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/cascada_opt.glb"
       alt="cascada" position="40 9 -28" scale="0.1 0.1 0.1" rotation="0 -62 0">
     </a-gltf-model>
 
     <!-- PAISAJE -->
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/262ef18899b449b798df4de8d079b5e2.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/cielo_opt.glb"
       alt="cielo" position="30 0 -49" scale="40 40 40" rotation="0 90 0"
       animation="property: rotation; to: 0 360 0; loop: true; dur: 700000; easing: linear">
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/8719c13ab9a5456c9e80ba55cc33ef31.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/mountain_opt.glb"
       alt="mountain" position="100 0 -300" scale="200 200 200" rotation="0 -180 0">
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/8719c13ab9a5456c9e80ba55cc33ef31.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/mountain_opt.glb"
       alt="mountain" position="-100 0 -300" scale="200 200 200" rotation="0 180 0">
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/24124bd7335c44d29df2e26928cff98c.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/cerezo_opt.glb"
       alt="cerezoD" position="-20 0 -40" scale="40 40 40"
       event-set__enter="_event: mouseenter; _target: #petalos; visible: true"
       event-set__leave="_event: mouseleave; _target: #petalos; visible: false">
@@ -260,49 +262,49 @@
     </a-entity>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/24124bd7335c44d29df2e26928cff98c.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/cerezo_opt.glb"
       alt="cerezoI" position="20 0 -50" scale="40 40 40">
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/24124bd7335c44d29df2e26928cff98c.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/cerezo_opt.glb"
       alt="cerezoI2" position="30 0 -49" scale="40 40 40" rotation="0 90 0">
     </a-gltf-model>
 
     <!-- PLANTAS -->
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/3751678cfd104f9887a0879e7d3f6bb2.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/flores_opt.glb"
       alt="floresI" position="-20 0 -40" scale="2 2 2">
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/3751678cfd104f9887a0879e7d3f6bb2.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/flores_opt.glb"
       alt="floresD" position="20 0 -50" scale="2 2 2" rotation="0 90 0">
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/417f89856d584515bc1882e1a658c3b2.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/grass_opt.glb"
       alt="grassI" position="-4 0 -28" scale="0.15 0.15 0.15">
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/417f89856d584515bc1882e1a658c3b2.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/grass_opt.glb"
       alt="grassD" position="4 0 -28" scale="0.15 0.15 0.15" rotation="0 180 0">
     </a-gltf-model>
 
     <!-- DECORACION -->
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/290528bf459c4c4abb680d2d6593fb88.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/buda_opt.glb"
       alt="buda" position="23 0 -45" scale="0.5 0.5 0.5" rotation="0 -15 0">
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/f611c22f5f0a48aa99333f388df8b12a.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/farolillos_opt.glb"
       alt="farolillosD" position="4 0 -10" scale="1.5 1.5 1.5" rotation="0 -90 0">
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/f611c22f5f0a48aa99333f388df8b12a.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/farolillos_opt.glb"
       alt="farolillosI" position="-4 0 -10" scale="1.5 1.5 1.5" rotation="0 -90 0">
     </a-gltf-model>
 
@@ -312,25 +314,25 @@
       brillo con material emissive, mucho más barato de renderizar.
     -->
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/b9e81d602f284278b65ff93dd703aecb.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/farol_opt.glb"
       alt="farol1" position="18 0 -48" scale="0.02 0.02 0.02">
       <a-light type="point" position="18 0 -45" color="#ffb347" intensity="5" distance="15"></a-light>
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/b9e81d602f284278b65ff93dd703aecb.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/farol_opt.glb"
       alt="farol2" position="30 0 -45" scale="0.02 0.02 0.02"
       material="emissive: #ffb347; emissiveIntensity: 0.6">
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/b9e81d602f284278b65ff93dd703aecb.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/farol_opt.glb"
       alt="farol3" position="-15 0 -35" scale="0.02 0.02 0.02"
       material="emissive: #ffb347; emissiveIntensity: 0.6">
     </a-gltf-model>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/54b114fb59464f7a9f1dcbe083fbbd0e.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/pozo_opt.glb"
       alt="pozo" position="38 0 -37.5" scale="3 3 3" rotation="0 100 0"
       event-set__enter="_event: mouseenter; _target: #mensajePozo; visible: true"
       event-set__leave="_event: mouseleave; _target: #mensajePozo; visible: false">
@@ -347,7 +349,7 @@
     <a-light type="point" position="38 5 -37.5" color="#ffb7e8" intensity="1" distance="10"></a-light>
 
     <a-gltf-model
-      src="https://cdn.tinyglb.com/models/a66f326b06a84414b377269da9d6d355.glb"
+      src="https://raw.githubusercontent.com/carlatienzam-byte/Japanese-Period/main/modelos/samurai_opt.glb"
       alt="samurai" position="-20 6.7 -28" scale="0.004 0.004 0.004" rotation="0 -45 0">
     </a-gltf-model>
 
