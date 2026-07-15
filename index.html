@@ -151,11 +151,17 @@
   <!-- TOAST -->
   <div id="toast"></div>
 
+  <!-- MÚSICA DE FONDO — audio HTML5 en streaming, NO decodeAudioData.
+       Un <a-entity sound> descomprime el audio ENTERO en RAM (proporcional
+       a la duración, no al bitrate), lo que con pistas largas revienta la
+       memoria en móviles gama media/baja. Esta etiqueta reproduce en
+       streaming, sin tener nunca el audio completo descomprimido. -->
+  <audio id="bgm" src="musica_opt.mp3" loop preload="auto"></audio>
+
   <!-- ══════════ ESCENA A-FRAME ══════════ -->
   <a-scene vr-mode-ui="enabled: true"
-    renderer="antialias: false; precision: mediump; physicallyCorrectLights: false; colorManagement: true">
-
-    <a-entity sound="src: url(musica.mp3); autoplay: true; loop: true; volume: 0.5"></a-entity>
+    renderer="antialias: false; precision: mediump; physicallyCorrectLights: false; colorManagement: true"
+    gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/versioned/decoders/1.5.7/">
 
     <!-- PRIMITIVAS -->
     <a-plane
@@ -475,39 +481,22 @@
     });
 
     /* ── DESBLOQUEO DE AUDIO EN MÓVIL ──
-       Fix: nunca llamar a playSound() sin comprobar antes que el buffer ya
-       cargó (soundComp.pool con hijos), y todo envuelto en try/catch para
-       que un fallo de audio nunca tumbe la app. */
+       <audio> HTML5 en streaming: basta con llamar a play() tras el primer
+       gesto del usuario. try/catch por si el navegador rechaza el autoplay
+       igualmente, para que nunca sea un error no controlado. */
     var audioUnlocked = false;
     function unlockAudio() {
       if (audioUnlocked) return;
       audioUnlocked = true;
 
-      try {
-        var ctx = THREE.AudioContext ? THREE.AudioContext.getContext() : null;
-        if (ctx && ctx.state === 'suspended') ctx.resume();
-      } catch (e) {
-        console.warn('No se pudo reanudar el AudioContext:', e);
-      }
+      var bgm = document.getElementById('bgm');
+      if (!bgm) return;
 
-      var soundEl = document.querySelector('[sound]');
-      if (!soundEl) return;
-
-      var tryPlay = function () {
-        try {
-          var soundComp = soundEl.components && soundEl.components.sound;
-          if (soundComp && soundComp.pool && soundComp.pool.children.length && !soundComp.isPlaying) {
-            soundComp.playSound();
-          }
-        } catch (e) {
+      var playPromise = bgm.play();
+      if (playPromise && playPromise.catch) {
+        playPromise.catch(function (e) {
           console.warn('No se pudo iniciar la música:', e);
-        }
-      };
-
-      if (soundEl.components && soundEl.components.sound && soundEl.components.sound.pool) {
-        tryPlay();
-      } else {
-        soundEl.addEventListener('sound-loaded', tryPlay, { once: true });
+        });
       }
     }
     document.addEventListener('touchstart', unlockAudio, { once: true, passive: true });
