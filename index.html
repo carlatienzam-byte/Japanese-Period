@@ -474,10 +474,16 @@
       activatePortal(getPortalAtCenter());
     });
 
-    /* ── CLICK EN PORTALES (desktop) ── */
-    var el1 = document.getElementById('miEnlace1');
-    if (el1) el1.addEventListener('click', function() {
-      window.location.href = el1.dataset.url;
+    /* ── CLICK EN PORTALES: BLOQUEADO A PROPÓSITO ──
+       Solo se puede entrar a un portal pulsando el botón "ENTRAR PORTAL".
+       Interceptamos el clic en fase de captura (antes de que el componente
+       'link' interno de A-Frame procese su navegación automática) y lo
+       detenemos por completo. */
+    document.querySelectorAll('.portal').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+      }, true); // true = fase de captura, se ejecuta antes que A-Frame
     });
 
     /* ── DESBLOQUEO DE AUDIO EN MÓVIL ──
