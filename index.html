@@ -481,26 +481,35 @@
     });
 
     /* ── DESBLOQUEO DE AUDIO EN MÓVIL ──
-       <audio> HTML5 en streaming: basta con llamar a play() tras el primer
-       gesto del usuario. try/catch por si el navegador rechaza el autoplay
-       igualmente, para que nunca sea un error no controlado. */
-    var audioUnlocked = false;
-    function unlockAudio() {
-      if (audioUnlocked) return;
-      audioUnlocked = true;
+       Reintenta en cada toque/click hasta que realmente empiece a sonar
+       (algunos navegadores rechazan el primer intento). Si el audio da un
+       error real (archivo no soportado, fallo de red, etc.) se muestra
+       como toast en pantalla, para poder depurar en el propio móvil sin
+       cable ni DevTools. */
+    var bgm = document.getElementById('bgm');
 
-      var bgm = document.getElementById('bgm');
-      if (!bgm) return;
+    if (bgm) {
+      bgm.addEventListener('error', function () {
+        var err = bgm.error;
+        var msg = err ? ('Error audio (código ' + err.code + ')') : 'Error audio desconocido';
+        showToast(msg);
+        console.error('Audio error:', err);
+      });
+    }
 
+    function tryPlayBgm() {
+      if (!bgm || !bgm.paused) return; // ya suena, o no existe el elemento
       var playPromise = bgm.play();
       if (playPromise && playPromise.catch) {
         playPromise.catch(function (e) {
           console.warn('No se pudo iniciar la música:', e);
+          showToast('Audio bloqueado: ' + (e && e.name ? e.name : 'reintentando...'));
         });
       }
     }
-    document.addEventListener('touchstart', unlockAudio, { once: true, passive: true });
-    document.addEventListener('click',      unlockAudio, { once: true });
+    document.addEventListener('touchstart', tryPlayBgm, { passive: true });
+    document.addEventListener('click', tryPlayBgm);
+    document.addEventListener('touchend', tryPlayBgm, { passive: true });
   </script>
 
 </body>
